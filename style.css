@@ -245,26 +245,32 @@ section p{
 }
 
 .services .grid a div{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:22px;
-  min-height:92px;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+  border: 2px solid #e6dccb; /* contorno visibile */
+  border-radius: 16px;
+  padding: 24px 22px;
+  min-height: 96px;
 
   display:flex;
   align-items:center;
   justify-content:center;
   text-align:center;
 
-  font-weight:600;
-  color:#333;
-  transition:0.25s ease;
+  font-weight: 650;
+  color:#2f2f2f;
+
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  transition: 0.25s ease;
 }
 
 .services .grid a div:hover{
-  transform:translateY(-3px);
-  border-color:var(--gold);
-  box-shadow:0 12px 30px rgba(0,0,0,0.07);
+  transform: translateY(-4px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 40px rgba(0,0,0,0.08);
+}
+
+.services .grid a{
+  cursor:pointer;
 }
 
 /* Card 7 centrata */
