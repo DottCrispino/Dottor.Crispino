@@ -1,65 +1,105 @@
-/* PRENOTA */
-.prenota-buttons{
-  display:flex;
-  gap:16px;
-  margin-top:26px;
-  flex-wrap:wrap;
-}
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prenota una visita | CDC</title>
+  <meta name="description" content="Prenota una visita presso lo Studio CDC. Contatto rapido via WhatsApp o email." />
 
-.btn-primary{
-  background:#b89b5e;
-  color:#fff;
-  border:1px solid #b89b5e;
-}
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
 
-.btn-primary:hover{
-  opacity:0.92;
-}
+<body>
 
-.btn-outline{
-  background:transparent;
-  border:1px solid #b89b5e;
-  color:#b89b5e;
-}
+<header class="service-hero">
+  <div class="container">
 
-.btn-outline:hover{
-  background:#b89b5e;
-  color:#fff;
-}
+    <nav class="nav">
+      <a class="logo" href="index.html">
+        <span class="logo-mark">CDC</span>
+        <span class="logo-sub">Studio Odontoiatrico</span>
+      </a>
 
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:18px;
-  margin-top:30px;
-}
+      <div class="nav-links">
+        <a href="index.html#trattamenti">Trattamenti</a>
+        <a href="index.html#studio">Studio</a>
+        <a href="prenota.html" class="btn">Prenota</a>
+      </div>
+    </nav>
 
-.info-card{
-  background:#fff;
-  border:1px solid #e8e2d7;
-  border-radius:14px;
-  padding:22px;
-  text-align:left;
-  box-shadow:0 10px 30px rgba(0,0,0,0.04);
-}
+    <div class="breadcrumb">
+      <a href="index.html">Home</a> &gt; <span>Prenota una visita</span>
+    </div>
 
-.info-card h3{
-  margin-bottom:8px;
-  font-size:18px;
-  color:#b89b5e;
-  font-family:'Montserrat', sans-serif;
-  font-weight:600;
-}
+    <div class="service-hero-content">
+      <div class="service-hero-text">
+        <h1>Prenota una visita</h1>
+        <p>
+          Per richiedere una visita o ricevere informazioni sui trattamenti, puoi contattare lo studio tramite WhatsApp o email.
+          Ti verranno forniti indicazioni, disponibilità e tutte le informazioni utili in modo chiaro e professionale.
+        </p>
 
-.info-card p{
-  margin:0;
-  color:#333;
-  font-size:16px;
-}
+        <div class="benefits">
+          <div>✔ Risposta rapida e gestione ordinata</div>
+          <div>✔ Informazioni complete e trasparenti</div>
+          <div>✔ Prenotazione semplice</div>
+          <div>✔ Massima attenzione al paziente</div>
+        </div>
+      </div>
 
-/* RESPONSIVE PRENOTA */
-@media(max-width:900px){
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-}
+      <img src="images/studio.jpg" alt="Studio CDC" class="service-hero-img" />
+    </div>
+
+  </div>
+</header>
+
+<section class="prenota-page">
+  <div class="container">
+    <h2>Contatti rapidi</h2>
+    <p class="section-intro">
+      Scegli il metodo che preferisci. WhatsApp è il canale più rapido.
+    </p>
+
+    <div class="prenota-grid">
+      <div class="prenota-card">
+        <h3>WhatsApp</h3>
+        <p>
+          Messaggio diretto per prenotazione, disponibilità e informazioni.
+        </p>
+        <a class="btn" target="_blank"
+          href="https://wa.me/393883452110?text=Buongiorno,%20vorrei%20prenotare%20una%20visita.%20Grazie.">
+          Scrivi su WhatsApp
+        </a>
+      </div>
+
+      <div class="prenota-card">
+        <h3>Email</h3>
+        <p>
+          Ideale per richieste dettagliate o invio di informazioni.
+        </p>
+        <a class="btn"
+          href="mailto:cristiandavide.crispino.doc@gmail.com?subject=Prenotazione%20visita&body=Buongiorno,%0D%0AVorrei%20prenotare%20una%20visita.%0D%0AGrazie.">
+          Invia una email
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <h2>CDC | Contatti</h2>
+    <p class="section-intro">
+      📞 +39 388 345 2110 — ✉️ cristiandavide.crispino.doc@gmail.com
+    </p>
+  </div>
+</footer>
+
+<a href="https://wa.me/393883452110?text=Buongiorno,%20vorrei%20prenotare%20una%20visita."
+   class="whatsapp-fixed"
+   target="_blank"
+   aria-label="Chatta su WhatsApp">💬</a>
+
+</body>
+</html>
