@@ -1,19 +1,20 @@
-// Dissolvenza delle sezioni in scroll
-const sections = document.querySelectorAll("section");
+document.addEventListener("DOMContentLoaded", () => {
+  const sections = document.querySelectorAll("section");
 
-const observer = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add("show");
-        observer.unobserve(entry.target);
-      }
-    });
-  },
-  {
-    threshold: 0.2,
-    rootMargin: "0px 0px -50px 0px"
-  }
-);
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    {
+      threshold: 0.18,
+      rootMargin: "0px 0px -60px 0px"
+    }
+  );
 
-sections.forEach(section => observer.observe(section));
+  sections.forEach(section => observer.observe(section));
+});
