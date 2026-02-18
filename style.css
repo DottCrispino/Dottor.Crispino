@@ -1,12 +1,15 @@
 /* =========================
    RESET
 ========================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
+/* =========================
+   VARIABILI
+========================= */
 :root{
   --gold:#b89b5e;
   --text:#1f1f1f;
@@ -14,21 +17,43 @@
   --line:#e8e2d7;
   --bg1:#ffffff;
   --bg2:#f9f7f3;
-
   --ink:#1f1f1f;
-  --inkSoft:#2b2b2b;
+
+  --shadow-soft: 0 12px 45px rgba(0,0,0,0.05);
+  --shadow-strong: 0 28px 85px rgba(0,0,0,0.12);
 }
 
+/* =========================
+   FIX OVERFLOW IPHONE
+========================= */
 html, body{
   width:100%;
-  overflow-x:hidden; /* BLOCCA QUALSIASI USCITA SU IPHONE */
+  overflow-x:hidden;
 }
 
+/* scroll morbido */
+html{
+  scroll-behavior:smooth;
+}
+
+/* =========================
+   BASE
+========================= */
 body{
   font-family:'Montserrat', sans-serif;
   color:var(--text);
   line-height:1.65;
-  background: linear-gradient(to bottom, var(--bg1) 0%, var(--bg2) 45%, var(--bg1) 100%);
+  background: linear-gradient(
+    to bottom,
+    var(--bg1) 0%,
+    var(--bg2) 45%,
+    var(--bg1) 100%
+  );
+}
+
+/* selezione testo */
+::selection{
+  background: rgba(184,155,94,0.25);
 }
 
 img{
@@ -41,14 +66,17 @@ a{
   text-decoration:none;
 }
 
+/* =========================
+   CONTAINER
+========================= */
 .container{
   max-width:1200px;
   margin:0 auto;
-  padding:0 20px; /* più sicuro su iPhone */
+  padding:0 20px;
 }
 
 /* =========================
-   BOTTONI (MEDICAL LUXURY)
+   BOTTONI (LUXURY MEDICAL)
 ========================= */
 .btn{
   display:inline-flex;
@@ -66,7 +94,7 @@ a{
   transition: 0.25s ease;
   border:1px solid rgba(184,155,94,0.55);
 
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.78);
   color: var(--ink);
   backdrop-filter: blur(6px);
 }
@@ -102,7 +130,7 @@ a{
 }
 
 /* =========================
-   NAV
+   NAVBAR
 ========================= */
 .nav{
   display:flex;
@@ -110,12 +138,19 @@ a{
   justify-content:space-between;
   gap:18px;
   padding-top:22px;
+  padding-bottom:12px;
 }
 
+/* logo */
 .logo{
   display:flex;
   flex-direction:column;
   gap:3px;
+  transition:0.25s ease;
+}
+
+.logo:hover{
+  transform: translateY(-1px);
 }
 
 .logo-mark{
@@ -125,6 +160,29 @@ a{
   color:var(--gold);
   letter-spacing:2px;
   line-height:1;
+
+  /* animazione premium */
+  position:relative;
+}
+
+.logo-mark::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-6px;
+  height:2px;
+  width:0;
+  background: linear-gradient(
+    90deg,
+    rgba(184,155,94,0) 0%,
+    rgba(184,155,94,0.95) 50%,
+    rgba(184,155,94,0) 100%
+  );
+  transition: width 0.6s ease;
+}
+
+.logo:hover .logo-mark::after{
+  width:100%;
 }
 
 .logo-sub{
@@ -134,6 +192,7 @@ a{
   text-transform:uppercase;
 }
 
+/* link nav */
 .nav-links{
   display:flex;
   align-items:center;
@@ -144,10 +203,46 @@ a{
   font-weight:500;
   color:#333;
   opacity:0.92;
+  transition:0.25s ease;
 }
 
 .nav-links a:hover{
   color:var(--gold);
+}
+
+/* =========================
+   STICKY NAVBAR (compare scrollando)
+========================= */
+.navbar-sticky{
+  position:fixed;
+  top:14px;
+  left:50%;
+  transform: translateX(-50%) translateY(-30px);
+  width:min(1160px, calc(100% - 28px));
+  z-index:9990;
+
+  opacity:0;
+  pointer-events:none;
+
+  padding:14px 18px;
+  border-radius:18px;
+
+  background: rgba(255,255,255,0.70);
+  border:1px solid rgba(184,155,94,0.22);
+  backdrop-filter: blur(12px);
+
+  box-shadow: 0 18px 55px rgba(0,0,0,0.10);
+  transition:0.35s ease;
+}
+
+.navbar-sticky.show{
+  opacity:1;
+  pointer-events:auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+.navbar-sticky .nav{
+  padding:0;
 }
 
 /* =========================
@@ -157,9 +252,24 @@ a{
   background: linear-gradient(135deg, #ffffff 0%, #f6f3ec 100%);
   padding: 26px 0 80px;
   border-bottom:1px solid var(--line);
+  position:relative;
+  overflow:hidden;
+}
+
+/* texture di profondità */
+.hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 10%, rgba(184,155,94,0.12), transparent 45%),
+    radial-gradient(circle at 85% 30%, rgba(0,0,0,0.05), transparent 55%),
+    radial-gradient(circle at 40% 90%, rgba(184,155,94,0.08), transparent 55%);
+  pointer-events:none;
 }
 
 .hero-content{
+  position:relative;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -178,7 +288,7 @@ a{
 .hero-text p{
   font-size:18px;
   color:#3c3c3c;
-  max-width:600px;
+  max-width:640px;
 }
 
 .hero-cta{
@@ -197,12 +307,13 @@ a{
 }
 
 .hero-badges div{
-  background: rgba(255,255,255,0.75);
+  background: rgba(255,255,255,0.78);
   border:1px solid rgba(184,155,94,0.22);
   border-radius:14px;
   padding:12px 14px;
   font-size:14px;
   color:#2c2c2c;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.04);
 }
 
 .hero-img{
@@ -211,17 +322,22 @@ a{
   object-fit:cover;
   border-radius:18px;
   border:3px solid rgba(184,155,94,0.85);
-  box-shadow: 0 18px 60px rgba(0,0,0,0.10);
+  box-shadow: 0 22px 75px rgba(0,0,0,0.14);
+  transition:0.35s ease;
+}
+
+.hero-img:hover{
+  transform: translateY(-6px);
 }
 
 /* =========================
-   SEZIONI (ANIMATE)
+   SEZIONI (ANIMATE + PREMIUM)
 ========================= */
 section{
   margin:34px auto;
   max-width:1200px;
-  border-radius:20px;
-  box-shadow:0 12px 45px rgba(0,0,0,0.05);
+  border-radius:22px;
+  box-shadow:var(--shadow-soft);
   background:#fff;
 
   padding:78px 60px;
@@ -229,7 +345,9 @@ section{
 
   opacity:0;
   transform:translateY(22px);
-  transition:all 0.8s ease;
+  transition:all 0.9s ease;
+
+  overflow:hidden;
 }
 
 section.show{
@@ -246,12 +364,42 @@ section h2{
   font-size:36px;
   color:var(--gold);
   margin-bottom:22px;
+
+  position:relative;
+  display:inline-block;
+  padding-bottom:14px;
+}
+
+/* micro-linea premium */
+section h2::after{
+  content:"";
+  position:absolute;
+  left:50%;
+  bottom:0;
+  transform:translateX(-50%);
+  height:2px;
+  border-radius:4px;
+
+  background: linear-gradient(
+    90deg,
+    rgba(184,155,94,0) 0%,
+    rgba(184,155,94,0.95) 50%,
+    rgba(184,155,94,0) 100%
+  );
+
+  width:0;
+  transition: width 0.9s ease;
+  opacity:0.9;
+}
+
+section.show h2::after{
+  width:78px;
 }
 
 section p{
   font-size:17px;
   color:#444;
-  max-width:820px;
+  max-width:840px;
   margin:0 auto 14px;
 }
 
@@ -263,7 +411,7 @@ section p{
 }
 
 /* =========================
-   SERVICES GRID (TOP PREMIUM)
+   SERVICES GRID (ULTRA CLICCABILE)
 ========================= */
 .services .grid{
   display:grid;
@@ -272,72 +420,111 @@ section p{
   margin-top:34px;
 }
 
+/* CARD */
 .services .grid a.card{
   position:relative;
   overflow:hidden;
 
   background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
-  border:1.5px solid rgba(184,155,94,0.28);
-  border-radius:18px;
+  border:1.8px solid rgba(184,155,94,0.35);
+  border-radius:22px;
 
-  padding:22px 20px;
-  min-height:150px;
+  padding:26px 22px;
+  min-height:170px;
 
   text-align:left;
 
   box-shadow:
-    0 14px 40px rgba(0,0,0,0.06),
+    0 18px 55px rgba(0,0,0,0.09),
     inset 0 1px 0 rgba(255,255,255,0.9);
 
-  transition: transform .28s ease, box-shadow .28s ease, border-color .28s ease;
+  transition:
+    transform .28s ease,
+    box-shadow .28s ease,
+    border-color .28s ease;
 
-  /* Entrata animata */
   opacity:0;
   transform: translateY(16px);
 }
 
+/* piccola linea sotto titolo card */
+.services .grid a.card h3::after{
+  content:"";
+  display:block;
+  height:2px;
+  width:28px;
+  margin-top:10px;
+  border-radius:4px;
+  background: rgba(184,155,94,0.85);
+  opacity:0.8;
+}
+
+/* icona cliccabile */
+.services .grid a.card::after{
+  content:"→";
+  position:absolute;
+  top:18px;
+  right:18px;
+  font-size:18px;
+  color: rgba(184,155,94,0.9);
+  opacity:0.65;
+  transition: 0.25s ease;
+}
+
+/* shine luxury */
 .services .grid a.card::before{
   content:"";
   position:absolute;
-  inset:-40%;
-  background: radial-gradient(circle, rgba(184,155,94,0.18) 0%, rgba(184,155,94,0.0) 55%);
-  transform: translateY(20%);
+  inset:-60%;
+  background: linear-gradient(
+    120deg,
+    rgba(184,155,94,0.00) 42%,
+    rgba(184,155,94,0.18) 50%,
+    rgba(184,155,94,0.00) 58%
+  );
+  transform: translateX(-40%);
   opacity:0;
-  transition: opacity .28s ease;
+  transition: opacity .25s ease, transform .65s ease;
 }
 
 .services .grid a.card h3{
   font-family:'Playfair Display', serif;
   font-size:20px;
   color: var(--gold);
-  margin-bottom:10px;
-  line-height:1.15;
+  margin-bottom:12px;
+  line-height:1.2;
 }
 
 .services .grid a.card p{
   font-size:15px;
-  color:#333;
+  color:#2f2f2f;
   margin:0;
-  opacity:0.92;
+  opacity:0.90;
 }
 
+/* Hover */
 .services .grid a.card:hover{
-  transform: translateY(-6px);
-  border-color: rgba(184,155,94,0.78);
-  box-shadow:
-    0 22px 65px rgba(0,0,0,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.95);
+  transform: translateY(-8px);
+  border-color: rgba(184,155,94,0.95);
+  box-shadow: var(--shadow-strong);
 }
 
 .services .grid a.card:hover::before{
   opacity:1;
+  transform: translateX(12%);
 }
 
+.services .grid a.card:hover::after{
+  opacity:1;
+  transform: translateX(3px);
+}
+
+/* Tap mobile */
 .services .grid a.card:active{
   transform: translateY(-2px) scale(0.99);
 }
 
-/* Animazione “stagger” quando appare la sezione */
+/* Stagger: quando appare la sezione */
 .services.show .grid a.card{
   opacity:1;
   transform: translateY(0);
@@ -352,7 +539,7 @@ section p{
 .services.show .grid a.card:nth-child(7){ transition-delay:.47s; }
 
 /* =========================
-   APPROACH TWO COLS
+   APPROACH
 ========================= */
 .two-cols{
   display:grid;
@@ -445,14 +632,14 @@ section p{
 }
 
 /* =========================
-   WHATSAPP FIXED
+   WHATSAPP FIXED (pulse + tooltip)
 ========================= */
 .whatsapp-fixed{
   position:fixed;
   bottom:18px;
   right:18px;
-  width:56px;
-  height:56px;
+  width:58px;
+  height:58px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -461,8 +648,138 @@ section p{
   color:#fff;
   font-size:26px;
   text-decoration:none;
-  box-shadow:0 14px 40px rgba(0,0,0,0.22);
+  box-shadow:0 16px 45px rgba(0,0,0,0.22);
   z-index:9999;
+  transition:0.25s ease;
+}
+
+.whatsapp-fixed:hover{
+  transform: translateY(-3px);
+}
+
+/* pulse */
+.whatsapp-fixed::before{
+  content:"";
+  position:absolute;
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background: rgba(37,211,102,0.35);
+  z-index:-1;
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse{
+  0%{ transform: scale(1); opacity:0.6; }
+  70%{ transform: scale(1.55); opacity:0; }
+  100%{ transform: scale(1.55); opacity:0; }
+}
+
+/* tooltip */
+.whatsapp-fixed::after{
+  content:"WhatsApp";
+  position:absolute;
+  right:70px;
+  background: rgba(0,0,0,0.78);
+  color:#fff;
+  font-size:12px;
+  padding:7px 10px;
+  border-radius:10px;
+  opacity:0;
+  transform: translateY(6px);
+  transition:0.25s ease;
+  pointer-events:none;
+  white-space:nowrap;
+}
+
+.whatsapp-fixed:hover::after{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* =========================
+   FAQ (SUPER CLICCABILI)
+========================= */
+.faq{
+  margin-top:42px;
+  text-align:left;
+  max-width:900px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+.faq h3{
+  font-family:'Playfair Display', serif;
+  font-size:28px;
+  color:var(--gold);
+  margin-bottom:18px;
+}
+
+details{
+  background: linear-gradient(180deg, #ffffff 0%, #fbfaf7 100%);
+  border:1.7px solid rgba(184,155,94,0.30);
+  border-radius:20px;
+  padding:16px 18px;
+  margin-bottom:12px;
+
+  box-shadow: 0 12px 35px rgba(0,0,0,0.05);
+  transition: 0.25s ease;
+}
+
+details:hover{
+  transform: translateY(-2px);
+  border-color: rgba(184,155,94,0.78);
+  box-shadow: 0 18px 55px rgba(0,0,0,0.09);
+}
+
+summary{
+  cursor:pointer;
+  font-weight:650;
+  color:#222;
+  list-style:none;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+}
+
+summary::-webkit-details-marker{
+  display:none;
+}
+
+summary::after{
+  content:"+";
+  width:36px;
+  height:36px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  border-radius:12px;
+  border:1px solid rgba(184,155,94,0.35);
+  color: rgba(184,155,94,0.95);
+
+  font-size:18px;
+  font-weight:700;
+
+  transition:0.25s ease;
+  flex-shrink:0;
+  background: rgba(255,255,255,0.75);
+}
+
+details[open] summary::after{
+  content:"×";
+  transform: rotate(90deg);
+  border-color: rgba(184,155,94,0.75);
+}
+
+details p{
+  margin-top:12px;
+  margin-bottom:0;
+  font-size:16px;
+  color:#444;
+  line-height:1.6;
 }
 
 /* =========================
@@ -512,7 +829,6 @@ section p{
   }
 
   .services .grid a.card{
-    text-align:left;
     min-height:auto;
   }
 
@@ -522,5 +838,11 @@ section p{
 
   .contacts-grid{
     grid-template-columns:1fr;
+  }
+
+  /* sticky navbar su mobile */
+  .navbar-sticky{
+    top:10px;
+    padding:12px 14px;
   }
 }
